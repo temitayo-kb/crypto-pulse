@@ -1,0 +1,45 @@
+.coin-page-wrapper {
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.coin-table-container {
+  margin-bottom: 1rem;
+  background-color: var(--darkGrey);
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.coin-table-container .list-table {
+  width: 100%;
+  margin: 0;
+}
+
+.coin-table-container .list-row-positive:hover,
+.coin-table-container .list-row-negative:hover {
+  border-left: 3px solid transparent;
+}
+
+.coin-table-container .list-row {
+  background-color: var(--darkGrey) !important;
+}
+
+.coin-info {
+  padding: 2rem;
+  background-color: var(--darkGrey);
+  border-radius: 8px;
+}
+
+.coin-info-heading {
+  margin: 0 0 1rem 0;
+  font-size: 1.8rem;
+  color: var(--white);
+}
+
+.coin-info-desc {
+  color: var(--white);
+  line-height: 1.5;
+  font-size: 0.875rem;
+  margin: 0;
+  cursor: pointer;
+}

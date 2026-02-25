@@ -1,0 +1,30 @@
+.favorite-button {
+  padding: 0.25rem !important;
+  transition: transform 0.2s ease;
+}
+
+.favorite-button:hover {
+  transform: scale(1.1);
+}
+
+.star-icon {
+  font-size: 1.25rem;
+}
+
+.star-filled {
+  color: #ffd700; /* Gold color for filled star */
+}
+
+.star-outlined {
+  color: var(--grey);
+}
+
+.star-outlined:hover {
+  color: #ffd700;
+}
+
+@media (max-width: 800px) {
+  .star-icon {
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,15 @@
+.chart-container {
+  background-color: var(--darkGrey);
+  width: 100%;
+  margin: 2rem 0;
+}
+
+.chart-padding {
+  padding: 1rem;
+}
+
+.line-chart {
+  width: 100%;
+  height: 450px;
+  position: relative;
+}
