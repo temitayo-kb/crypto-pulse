@@ -16,7 +16,6 @@ export default function TemporaryDrawer() {
       <Drawer anchor={"right"} open={open} onClose={() => setOpen(false)}>
         <div className="drawer-div">
           <Link to="/">
-            {/* <p className="link">Home</p> */}
             <p
               className={`link ${location.pathname === "/" ? "link-active" : ""}`}
             >

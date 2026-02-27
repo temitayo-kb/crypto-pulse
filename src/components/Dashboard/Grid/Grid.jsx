@@ -157,11 +157,9 @@ function Grid({ coin, isLoading = false, isEmpty = false }) {
             <div className="change-price red">
               {coin.price_change_percentage_24h?.toFixed(2)}%
             </div>
-            (
             <div className="change-icon red">
               <TrendingDownRoundedIcon className="trending" />
             </div>
-            )
           </div>
         )}
         <div className="grid-details">
@@ -172,13 +170,13 @@ function Grid({ coin, isLoading = false, isEmpty = false }) {
               : coin.current_price?.toLocaleString() || "N/A"}
           </h3>
           <p className="grid-stats">
-            Total Volume: $
+            {isMobile ? "Total Vol" : "Total Volume"}: $
             {isMobile
               ? formatNumber(coin.total_volume, false, true)
               : coin.total_volume?.toLocaleString() || "N/A"}
           </p>
           <p className="grid-stats">
-            Market Cap: $
+            {isMobile ? "Mkt Cap" : "Market Cap"}: $
             {isMobile
               ? formatNumber(coin.market_cap, false, true)
               : coin.market_cap?.toLocaleString() || "N/A"}

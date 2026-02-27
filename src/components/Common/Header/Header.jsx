@@ -9,7 +9,7 @@ function Header() {
   return (
     <div className="header">
       <h1>
-        CryptoTracker <span style={{ color: "var(--blue)" }}></span>
+        CryptoPulse <span style={{ color: "var(--blue)" }}>.</span>
       </h1>
       <div className="links">
         <Link to="/">

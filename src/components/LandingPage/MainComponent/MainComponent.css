@@ -65,7 +65,9 @@
   right: 50px;
   filter: blur(2.5px);
   opacity: 1;
-  transition: filter 0.3s ease, opacity 0.3s ease;
+  transition:
+    filter 0.3s ease,
+    opacity 0.3s ease;
   mix-blend-mode: overlay;
 }
 
