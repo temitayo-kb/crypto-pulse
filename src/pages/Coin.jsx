@@ -43,29 +43,6 @@ function CoinPage() {
     fetchInitialData();
   }, [id]);
 
-  // const handleDaysChange = async (event) => {
-  //   if (!id) return;
-
-  //   setIsLoading(true);
-  //   setDays(event.target.value);
-  //   const prices = await getCoinPrices(id, event.target.value, chartType);
-  //   if (prices) {
-  //     settingChartData(setChartData, prices);
-  //     setIsLoading(false);
-  //   }
-  // };
-
-  // const handleChartType = async (event, newType) => {
-  //   if (!newType || !id) return;
-  //   setIsLoading(true);
-  //   setChartType(newType);
-  //   const prices = await getCoinPrices(id, days, newType);
-  //   if (prices) {
-  //     settingChartData(setChartData, prices);
-  //     setIsLoading(false);
-  //   }
-  // };
-
   const handleDaysChange = async (event) => {
     if (!id) return;
 
@@ -106,7 +83,7 @@ function CoinPage() {
         setChartType(previousType);
       }
     } catch {
-      setDays(previousType);
+      setChartType(previousType); // was setDays(previousType)
       setErrorMessage(
         "Rate limit reached. Please wait a moment and try again.",
       );
@@ -134,18 +111,6 @@ function CoinPage() {
               </tbody>
             </table>
           </div>
-
-          {/* <div className="chart-container">
-            <div className="chart-padding">
-              <SelectDays days={days} handleDaysChange={handleDaysChange} />
-              <ChartToggle
-                chartType={chartType}
-                handleChartType={handleChartType}
-              />
-              <Linechart chartData={chartData} chartType={chartType} />
-            </div>
-          </div> */}
-
           <div className="chart-container">
             <div className="chart-padding">
               <SelectDays days={days} handleDaysChange={handleDaysChange} />

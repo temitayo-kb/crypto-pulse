@@ -23,8 +23,8 @@ function CoinSelector({ coins, selectedCoin, onCoinSelect, excludeCoinId }) {
               src={option.image}
               alt={option.name}
               style={{
-                width: "10px",
-                height: "14px",
+                width: "24px",
+                height: "24px",
                 marginRight: "10px",
                 borderRadius: "50%",
               }}

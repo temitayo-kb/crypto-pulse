@@ -71,7 +71,6 @@ function DashboardPage() {
             handlePageChange={handlePageChange}
             count={pageCount}
           />
-          <Loader />
         </div>
       )}
     </>
