@@ -11,6 +11,8 @@ import Linechart from "../components/Coin/LineChart/Linechart";
 import SelectDays from "../components/Coin/SelectDays/SelectDays";
 import { settingChartData } from "../functions/settingChartData.js/";
 import ChartToggle from "../components/Coin/ChartToggle/ChartToggle.jsx";
+import { useMediaQuery } from "@mui/material";
+import ErrorBanner from "../components/Common/ErrorBanner/ErrorBanner";
 
 function CoinPage() {
   const { id } = useParams();
@@ -19,6 +21,9 @@ function CoinPage() {
   const [days, setDays] = useState(30);
   const [chartData, setChartData] = useState({});
   const [chartType, setChartType] = useState("prices");
+  const isMobile = useMediaQuery("(max-width: 768px)");
+  const [chartLoading, setChartLoading] = useState(false); // chart updates only
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     async function fetchInitialData() {
@@ -38,32 +43,86 @@ function CoinPage() {
     fetchInitialData();
   }, [id]);
 
+  // const handleDaysChange = async (event) => {
+  //   if (!id) return;
+
+  //   setIsLoading(true);
+  //   setDays(event.target.value);
+  //   const prices = await getCoinPrices(id, event.target.value, chartType);
+  //   if (prices) {
+  //     settingChartData(setChartData, prices);
+  //     setIsLoading(false);
+  //   }
+  // };
+
+  // const handleChartType = async (event, newType) => {
+  //   if (!newType || !id) return;
+  //   setIsLoading(true);
+  //   setChartType(newType);
+  //   const prices = await getCoinPrices(id, days, newType);
+  //   if (prices) {
+  //     settingChartData(setChartData, prices);
+  //     setIsLoading(false);
+  //   }
+  // };
+
   const handleDaysChange = async (event) => {
     if (!id) return;
 
-    setIsLoading(true);
+    const previousDays = days;
+    setChartLoading(true);
     setDays(event.target.value);
-    const prices = await getCoinPrices(id, event.target.value, chartType);
-    if (prices) {
-      settingChartData(setChartData, prices);
-      setIsLoading(false);
+
+    try {
+      const prices = await getCoinPrices(id, event.target.value, chartType);
+      if (prices) {
+        settingChartData(setChartData, prices);
+      } else {
+        setDays(previousDays);
+      }
+    } catch {
+      setDays(previousDays);
+      setErrorMessage(
+        "Rate limit reached. Please wait a moment and try again.",
+      );
+      setTimeout(() => setErrorMessage(""), 5000);
+    } finally {
+      setChartLoading(false);
     }
   };
 
   const handleChartType = async (event, newType) => {
     if (!newType || !id) return;
-    setIsLoading(true);
+
+    const previousType = chartType;
+    setChartLoading(true);
     setChartType(newType);
-    const prices = await getCoinPrices(id, days, newType);
-    if (prices) {
-      settingChartData(setChartData, prices);
-      setIsLoading(false);
+
+    try {
+      const prices = await getCoinPrices(id, days, newType);
+      if (prices) {
+        settingChartData(setChartData, prices);
+      } else {
+        setChartType(previousType);
+      }
+    } catch {
+      setDays(previousType);
+      setErrorMessage(
+        "Rate limit reached. Please wait a moment and try again.",
+      );
+      setTimeout(() => setErrorMessage(""), 5000);
+    } finally {
+      setChartLoading(false);
     }
   };
 
   return (
     <div>
       <Header />
+      <ErrorBanner
+        message={errorMessage}
+        onDismiss={() => setErrorMessage("")}
+      />
       {isLoading ? (
         <Loader />
       ) : coinData ? (
@@ -71,10 +130,21 @@ function CoinPage() {
           <div className="coin-table-container">
             <table className="list-table">
               <tbody>
-                <List coin={coinData} useCompactFormat={false} />
+                <List coin={coinData} useCompactFormat={isMobile} />
               </tbody>
             </table>
           </div>
+
+          {/* <div className="chart-container">
+            <div className="chart-padding">
+              <SelectDays days={days} handleDaysChange={handleDaysChange} />
+              <ChartToggle
+                chartType={chartType}
+                handleChartType={handleChartType}
+              />
+              <Linechart chartData={chartData} chartType={chartType} />
+            </div>
+          </div> */}
 
           <div className="chart-container">
             <div className="chart-padding">
@@ -83,7 +153,20 @@ function CoinPage() {
                 chartType={chartType}
                 handleChartType={handleChartType}
               />
-              <Linechart chartData={chartData} chartType={chartType} />
+              {chartLoading ? (
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "450px",
+                  }}
+                >
+                  <Loader />
+                </div>
+              ) : (
+                <Linechart chartData={chartData} chartType={chartType} />
+              )}
             </div>
           </div>
           <CoinInfo heading={coinData.name} desc={coinData.desc} />

@@ -73,7 +73,7 @@ function MainComponent() {
         className="phone-container"
         animate={{ y: [-10, 10] }}
         transition={{
-          duration: 0.8,
+          duration: 1,
           repeat: Infinity,
           repeatType: "reverse",
           ease: "easeInOut",

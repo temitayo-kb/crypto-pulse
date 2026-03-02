@@ -16,7 +16,7 @@ function List({ coin, useCompactFormat }) {
     if (isNavigating) return;
     setIsNavigating(true);
     navigate(`/coin/${coin.id}`);
-    setTimeout(() => setIsNavigating(false), 2000); 
+    setTimeout(() => setIsNavigating(false), 2000);
   };
 
   const isPositive = coin.price_change_percentage_24h > 0;
@@ -35,12 +35,7 @@ function List({ coin, useCompactFormat }) {
           isFavorite={isFavorite(coin.id)}
           onToggle={toggleFavorite}
         />
-        <img
-          src={coin.image}
-          className="header-logo"
-          alt={coin.name}
-          style={{ width: "32px", height: "32px", marginRight: "0.75rem" }}
-        />
+        <img src={coin.image} className="header-logo" alt={coin.name} />
         <div className="header-identity">
           <p className="header-symbol">{coin.symbol}</p>
           <p className="header-name">{coin.name}</p>

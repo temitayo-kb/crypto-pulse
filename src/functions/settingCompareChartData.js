@@ -18,7 +18,7 @@ export const settingCompareChartData = (
         fill: false,
         tension: 0.25,
         pointRadius: 0,
-        yAxisID: "crypto1",
+        yAxisID: "y",
       },
       {
         label: coin2Name,

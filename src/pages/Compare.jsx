@@ -177,6 +177,7 @@ function ComparePage() {
   const handleDaysChange = async (event) => {
     if (!selectedCoin1 || !selectedCoin2) return;
 
+    const previousDays = days;
     setIsLoading(true);
     setDays(event.target.value);
     let errorCount = 0;
@@ -210,6 +211,7 @@ function ComparePage() {
     setIsLoading(false);
 
     if (errorCount > 0) {
+      setDays(previousDays);
       setErrorMessage(
         "Rate limit reached. Please wait a moment and try again.",
       );

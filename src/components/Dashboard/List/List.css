@@ -140,6 +140,12 @@
   margin: 0;
 }
 
+.header-logo {
+  width: 2.2rem;
+  height: 2.2rem;
+  margin-right: 0.75rem;
+}
+
 .table-row.row-hovered .fixed-cells,
 .table-row.row-hovered .scrollable-cells,
 .table-row.row-hovered .cell {

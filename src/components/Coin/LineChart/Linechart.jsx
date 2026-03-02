@@ -18,7 +18,7 @@ function Linechart({ chartData, multiAxis, chartType }) {
       intersect: false,
     },
     scales: {
-      crypto1: {
+      y: {
         type: "linear",
         position: "left",
         ticks: {
