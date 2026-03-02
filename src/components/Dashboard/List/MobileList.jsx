@@ -5,6 +5,8 @@ import { formatNumber } from "../../../functions/FormatNumber";
 import FavoriteButton from "../../Common/FavoriteButton/FavoriteButton";
 import { useFavorites } from "../../../hooks/useFavorites";
 import { useNavigate } from "react-router-dom";
+import TrendingUpRoundedIcon from "@mui/icons-material/TrendingUpRounded";
+import TrendingDownRoundedIcon from "@mui/icons-material/TrendingDownRounded";
 
 function MobileList({ coins, onSort }) {
   const { isFavorite, toggleFavorite } = useFavorites();
@@ -126,7 +128,11 @@ function MobileList({ coins, onSort }) {
                       <div
                         className={`change-icon ${!isPositive ? "red" : ""}`}
                       >
-                        {isPositive ? "↗" : "↘"}
+                        {isPositive ? (
+                          <TrendingUpRoundedIcon className="trending" />
+                        ) : (
+                          <TrendingDownRoundedIcon className="trending" />
+                        )}
                       </div>
                     </div>
                   </div>

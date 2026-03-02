@@ -138,6 +138,12 @@
   color: var(--grey);
   font-size: 0.8rem;
   margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .header-logo {
@@ -370,6 +376,16 @@
 
   .change-price {
     font-size: 0.75rem;
+  }
+
+  .change-icon {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+
+  .change-icon .trending {
+    width: 0.85rem;
+    height: 0.85rem;
   }
 
   /* Header Identity Styles */
